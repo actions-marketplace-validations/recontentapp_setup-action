@@ -1,0 +1,45 @@
+name: Tests
+
+on:
+  push:
+    branches:
+    - main
+  pull_request:
+
+defaults:
+  run:
+    shell: bash
+
+jobs:
+  test:
+    name: Test
+    runs-on: ${{ matrix.os }}
+    strategy:
+      matrix:
+        os: [macos-latest, windows-latest, ubuntu-latest]
+        version: [1.1.0, 1.0.0]
+    steps:
+    - name: Checkout
+      uses: actions/checkout@v2
+
+    - name: Setup recontent
+      uses: ./
+      with:
+        version: ${{ matrix.version }}
+
+    - name: Capture recontent version installed
+      run: |
+        export RECONTENT_VERSION=$( recontent --version )
+        echo 'RECONTENT_VERSION_INSTALLED<<EOF' >> $RECONTENT_ENV
+        recontent --version >> $RECONTENT_ENV
+        echo 'EOF' >> $RECONTENT_ENV
+
+    - name: Verify
+      shell: python
+      env:
+        RECONTENT_VERSION_EXPECTED: ${{ matrix.version }}
+      run: |
+        import sys, os
+        sys.exit(
+            int(not os.environ["RECONTENT_VERSION_EXPECTED"] in os.environ["RECONTENT_VERSION_INSTALLED"])
+        )

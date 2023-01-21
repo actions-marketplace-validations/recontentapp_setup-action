@@ -1,0 +1,10 @@
+name: setup-recontent
+description: Setup Recontent CLI on GitHub Actions runners
+inputs:
+  version:
+    description: Version of Recontent CLI to install
+    required: false
+    default: 0.1.1
+runs:
+  using: node12
+  main: dist/index.js

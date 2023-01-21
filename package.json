@@ -1,0 +1,28 @@
+{
+  "name": "@recontentapp/setup-recontent",
+  "version": "0.1.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "lint": "eslint .",
+    "prepare": "ncc build index.js -o dist --source-map --license licenses.txt",
+    "test": "jest",
+    "all": "yarn lint && yarn prepare && yarn test"
+  },
+  "keywords": [],
+  "homepage": "https://github.com/recontentapp/setup-action",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/recontentapp/setup-action.git"
+  },
+  "dependencies": {
+    "@actions/core": "1.2.6",
+    "@actions/tool-cache": "1.6.0"
+  },
+  "devDependencies": {
+    "@vercel/ncc": "0.24.0",
+    "eslint": "7.4.0",
+    "jest": "26.1.0"
+  }
+}
