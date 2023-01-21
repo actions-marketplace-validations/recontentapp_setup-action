@@ -28,6 +28,9 @@ jobs:
         version: ${{ matrix.version }}
 
     - name: Capture recontent version installed
+      env:
+        # Required to use CLI
+        RECONTENT_API_KEY: dummy-api-key
       run: |
         export RECONTENT_VERSION=$( recontent --version )
         echo 'RECONTENT_VERSION_INSTALLED<<EOF' >> $RECONTENT_ENV
