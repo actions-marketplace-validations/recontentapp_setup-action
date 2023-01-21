@@ -13,12 +13,12 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Set up Recontent CLI
-        uses: recontentapp/setup-recontent@v1
+        uses: recontentapp/setup-action@v1
 
       - name: Pull translations
         env:
           RECONTENT_API_KEY: dummy-api-key
-        run: recontent export phrases -p <project_id> -f "i18n/{{.LanguageKey}}.{{.FormatExtension}}" 
+        run: recontent export phrases -p <project_id> -f "{{.LanguageLocale}}.{{.FormatExtension}}" 
 ```
 
 A specific version of the `recontent` CLI can be installed:
@@ -29,18 +29,18 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Set up Recontent CLI
-        uses: recontentapp/setup-recontent@v1
+        uses: recontentapp/setup-action@v1
         with:
           version:
-            0.1.2
+            0.1.3
 
       - name: Pull translations
         env:
           RECONTENT_API_KEY: dummy-api-key
-        run: recontent export phrases -p <project_id> -f "i18n/{{.LanguageKey}}.{{.FormatExtension}}" 
+        run: recontent export phrases -p <project_id> -f "{{.LanguageLocale}}.{{.FormatExtension}}" 
 ```
 
 ## Inputs
 The actions supports the following inputs:
 
-- `version`: The version of `recontent` to install, defaulting to `0.1.2`
+- `version`: The version of `recontent` to install, defaulting to `0.1.3`

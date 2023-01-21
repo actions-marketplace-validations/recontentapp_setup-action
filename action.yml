@@ -1,4 +1,4 @@
-name: setup-recontent
+name: Recontent.app
 description: Setup Recontent CLI on GitHub Actions runners
 branding:
   icon: feather
@@ -7,7 +7,7 @@ inputs:
   version:
     description: Version of Recontent CLI to install
     required: false
-    default: 0.1.2
+    default: 0.1.3
 runs:
   using: node16
   main: dist/index.js
