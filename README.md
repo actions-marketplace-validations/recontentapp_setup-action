@@ -7,21 +7,37 @@ This action can be run on `ubuntu-latest`, `windows-latest`, and `macos-latest` 
 
 ## Usage
 
-Setup the `recontent` CLI:
-
 ```yaml
-steps:
-- uses: recontentapp/setup-recontent@v1
+jobs:
+  pull-phrases:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Set up Recontent CLI
+        uses: recontentapp/setup-recontent@v1
+
+      - name: Pull translations
+        env:
+          RECONTENT_API_KEY: dummy-api-key
+        run: recontent export phrases -p <project_id> -f "i18n/{{.LanguageKey}}.{{.FormatExtension}}" 
 ```
 
 A specific version of the `recontent` CLI can be installed:
 
 ```yaml
-steps:
-- uses: recontentapp/setup-recontent@v1
-  with:
-    version:
-      0.1.2
+jobs:
+  pull-phrases:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Set up Recontent CLI
+        uses: recontentapp/setup-recontent@v1
+        with:
+          version:
+            0.1.2
+
+      - name: Pull translations
+        env:
+          RECONTENT_API_KEY: dummy-api-key
+        run: recontent export phrases -p <project_id> -f "i18n/{{.LanguageKey}}.{{.FormatExtension}}" 
 ```
 
 ## Inputs
