@@ -33,9 +33,9 @@ jobs:
         RECONTENT_API_KEY: dummy-api-key
       run: |
         export RECONTENT_VERSION=$( recontent --version )
-        echo 'RECONTENT_VERSION_INSTALLED<<EOF' >> $RECONTENT_ENV
-        recontent --version >> $RECONTENT_ENV
-        echo 'EOF' >> $RECONTENT_ENV
+        echo 'RECONTENT_VERSION_INSTALLED<<EOF' >> "$RECONTENT_ENV"
+        recontent --version >> "$RECONTENT_ENV"
+        echo 'EOF' >> "$RECONTENT_ENV"
 
     - name: Verify
       shell: python
