@@ -28,14 +28,15 @@ jobs:
         version: ${{ matrix.version }}
 
     - name: Capture recontent version installed
+      # Required to use CLI
       env:
-        # Required to use CLI
         RECONTENT_API_KEY: dummy-api-key
+      # See https://docs.github.com/en/actions/using-workflows/workflow-commands-for-github-actions#setting-an-environment-variable
       run: |
         export RECONTENT_VERSION=$( recontent --version )
-        echo 'RECONTENT_VERSION_INSTALLED<<EOF' >> "$RECONTENT_ENV"
-        recontent --version >> "$RECONTENT_ENV"
-        echo 'EOF' >> "$RECONTENT_ENV"
+        echo 'RECONTENT_VERSION_INSTALLED<<EOF' >> $GITHUB_ENV
+        recontent --version >> $GITHUB_ENV
+        echo 'EOF' >> $GITHUB_ENV
 
     - name: Verify
       shell: python
