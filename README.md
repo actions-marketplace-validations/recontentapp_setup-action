@@ -21,10 +21,10 @@ steps:
 - uses: recontentapp/setup-recontent@v1
   with:
     version:
-      0.1.1
+      0.1.2
 ```
 
 ## Inputs
 The actions supports the following inputs:
 
-- `version`: The version of `recontent` to install, defaulting to `0.1.1`
+- `version`: The version of `recontent` to install, defaulting to `0.1.2`
